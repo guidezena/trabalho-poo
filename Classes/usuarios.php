@@ -43,18 +43,16 @@ class usuario
     public function logar($email, $senha)
     {
         global $pdo;
-        global $msgErro;
         $sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e AND senha = :s");
         $sql->bindValue(":e", $email);
         $sql->bindValue(":s", md5($senha));
         $sql->execute();
-        if($sql->rowCount() > 0){
-            $dado->$sql->fetc();
+        if ($sql->rowCont() > 0) {
+            $dado = $sql->fetch();
             session_start();
             $_SESSION['id_usuario'] = $dado['id_usuario'];
             return true;
-
-        }else{
+        } else {
             return false;
         }
     }

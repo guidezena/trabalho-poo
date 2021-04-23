@@ -33,18 +33,39 @@ $u = new usuario;
         $email = addslashes($_POST['email']);
         $senha = addslashes($_POST['senha']);
         $confirmarSenha = addslashes($_POST['confSenha']);
+        //verificar se nao ta
         if (!empty($nome) && !empty($telefone) && !empty($email) && !empty($senha) && !empty($confirmarSenha)) {
             $u->conectar("projeto_login", "localhost", "root", "");
             if ($u->msgErro == "") //se esta tudo okay
             {
-                $u->cadastrar($nome, $host, $usuario, $senha);
+                if ($senha == $confirmarSenha) {
+                    if ($u->cadastrar($nome, $telefone, $email, $senha,)) {
+                        ?>
+                        <div id="msg-sucesso">cadastrado com sucesso! Acesse para entrar</div>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <div class="msg-erro">Email ja cadastrado</div>
+                    <?php
+                }
             } else {
-                echo "Erro:" . $u->msgErro;
+                ?>
+                <div class="msg-erro">senha e confirmar senha nao correspondem"</div>
+                <?php
+               
             }
         } else {
-            echo "Preencha todos os campos!";
+            echo "Erro: " . $u->msgErro;
         }
+    } else {
+        ?>
+        <div class="msg-erro">Preencha todos os campos</div>
+        <?php
+         
+         
     }
+
 
     ?>
 </body>

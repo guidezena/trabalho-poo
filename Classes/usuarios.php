@@ -1,6 +1,6 @@
 <?php
 
-class usuario
+class usuarioCadastro
 {
     private $pdo;
     public $msgErro = "";
@@ -40,6 +40,9 @@ class usuario
             return true;
         }
     }
+}
+class usuarioLogar
+{
     public function logar($email, $senha)
     {
         global $pdo;

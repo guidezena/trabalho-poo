@@ -1,6 +1,6 @@
 <?php
 
-class usuario
+class conexaoBanco
 {
     private $pdo;
     public $msgErro = "";
@@ -18,6 +18,13 @@ class usuario
             $msgErro = $e->getMessage();
         }
     }
+}
+class acessoUsuario
+{
+    private $nome;
+    private $telefone;
+    private $email;
+    private $senha;
     public function cadastrar($nome, $telefone, $email, $senha)
     {
 
@@ -25,7 +32,7 @@ class usuario
         global $msgErro;
         //verificar se o email ta cadastrado, se nao cadastra
         $sql = $pdo->prepare("SELECT id_usuario FROM usuarios 
-                            WHERE email = :e ");
+                        WHERE email = :e ");
         $sql->bindValue(":e", $email);
         $sql->execute();
         if ($sql->rowCount() > 0) {

@@ -1,6 +1,6 @@
 <?php
 require_once 'Classes/usuarios.php';
-$u = new usuario;
+$u = new conexaoBanco;
 ?>
 
 <!DOCTYPE html>

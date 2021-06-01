@@ -1,7 +1,9 @@
 <?php
 
+//separando classes para cada funcionalidade
 class conexaoBanco
 {
+    //requisicao para a conexao do banco
     private $pdo;
     public $msgErro = "";
     public function conectar($nome, $host, $usuario, $senha)
@@ -21,6 +23,7 @@ class conexaoBanco
 }
 class acessoUsuario
 {
+    //definindo os tipos das variaveis
     private $nome;
     private $telefone;
     private $email;
@@ -49,6 +52,7 @@ class acessoUsuario
     }
     public function logar($email, $senha)
     {
+        //se voce esta com os dados correto ele exibira a mensagem de sucesso
         global $pdo;
         $sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e AND senha = :s");
         $sql->bindValue(":e", $email);
